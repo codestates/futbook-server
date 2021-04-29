@@ -6,14 +6,14 @@ const config = {
     username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: "futbook_Dev",
-    host: DATABASE_HOST,
+    host: process.env.DATABASE_HOST,
     dialect: "mysql",
   },
   production: {
     username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: "futbook",
-    host: DATABASE_HOST,
+    host: process.env.DATABASE_HOST,
     dialect: "mysql",
   },
 };
