@@ -17,6 +17,10 @@ app.use(
   })
 );
 
+//응답 잘가는 지 확인
+app.get("/", (req, res) => {
+  res.send("server connected");
+});
 //https를 위한 SSL인증서
 const key = "";
 // const key = fs.readFileSync(process.env.SSL_PRIVATE);
