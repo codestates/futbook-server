@@ -3,6 +3,8 @@ const fs = require("fs");
 const https = require("https");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 
@@ -21,13 +23,16 @@ app.use(
 app.get("/", (req, res) => {
   res.send("server connected");
 });
-//https를 위한 SSL인증서
-const key = "";
-// const key = fs.readFileSync(process.env.SSL_PRIVATE);
 
-//서버 여는 코드
+app.listen(process.env.SERVER_PORT, () => {
+  "server start";
+});
+
+/* https로 서버 여는 과정중 실패, 후에 다시 시도.
+const key = fs.readFileSync('');
+
 if (key) {
-  https.createServer({ key }, app).listen(80, () => {
+  https.createServer({ key }, app).listen(443, () => {
     console.log("https server working");
   });
 } else {
@@ -35,3 +40,4 @@ if (key) {
     "key is not exists";
   });
 }
+*/
