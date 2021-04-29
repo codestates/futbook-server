@@ -17,6 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       bookingDate: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {
