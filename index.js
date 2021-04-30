@@ -1,6 +1,6 @@
 const express = require("express");
-const fs = require("fs");
-const https = require("https");
+// const fs = require("fs");
+// const https = require("https");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -18,6 +18,15 @@ app.use(
     credentials: true,
   })
 );
+
+//라우트 분기
+const bookingRouter = require("./routes/booking");
+const signRouter = require("./routes/sign");
+const userRouter = require("./routes/user");
+
+app.use("/booking", bookingRouter);
+app.use("/sign", signRouter);
+app.use("/user", userRouter);
 
 //응답 잘가는 지 확인
 app.get("/", (req, res) => {
