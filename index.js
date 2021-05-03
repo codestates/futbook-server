@@ -23,10 +23,12 @@ app.use(
 const bookingRouter = require("./routes/booking");
 const signRouter = require("./routes/sign");
 const userRouter = require("./routes/user");
+const futsalRouter = require("./routes/futsal");
 
 app.use("/booking", bookingRouter);
 app.use("/sign", signRouter);
 app.use("/user", userRouter);
+app.use("/futsal", futsalRouter);
 
 //응답 잘가는 지 확인
 app.get("/", (req, res) => {
