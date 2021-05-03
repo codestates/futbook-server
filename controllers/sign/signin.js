@@ -8,10 +8,9 @@ module.exports = async (req, res) => {
   if (userInfo) {
     const userData = { ...userInfo.dataValues };
     delete userData.password;
-    console.log(process.env.ACCESS_SECRET);
 
     const accessToken = jwt.sign(
-      { email },
+      { email, id: userData.id },
       process.env.ACCESS_SECRET,
       {
         expiresIn: 60 * 60,
