@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
           res.status(500).send({ message: "fail to generate token" });
         }
         User.update({ token: coded }, { where: { email } });
+        const accessToken = coded;
         res
           .status(200)
           .send({ data: { accessToken }, message: "Login successful" });
