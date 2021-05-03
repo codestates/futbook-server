@@ -1,22 +1,14 @@
-const { User } = require("../../models");
+const { Booking } = require("../../models");
 
-module.exports = (req, res) => {
-  // const { authorization } = req.headers;
-  const { id, bookingDate } = req.body;
-  const userSameId = await User.findOne({ where: id });
-  const userSameDate = await User.findOne({ where: bookingDate })
+module.exports = async (req, res) => {
+  const user_Id = res.userId;
+  const { futsal_Id, bookingDate } = req.body;
 
-  if (userSameId) {
-    res.status(409).json({ message: 'You have already booked' })
-  } else if (userSameDate) {
-    res.status(409).json({ message: 'Cannot book twice on same day' })
-  } else {
-    try {
-      await User.create({ id, bookingDate });
-      res.status(200).send({ message: 'Booking successful' })
-    } catch (err) {
-      res.status(401).send({ message : 'Invaild token, failed to book' })
-    }
+  try {
+    const result = await Booking.create({ user_Id, futsal_Id, bookingDate });
+
+    res.status(200).send({ message: "booking successful" });
+  } catch (err) {
+    res.status(500).send({ message: `${err.message}` });
   }
 };
-// res.send("test ahah, checkcheck");
