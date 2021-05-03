@@ -5,6 +5,6 @@ const checkTokenValid = require("../middlewares/checkTokenValid");
 
 router.post("/signin", controller.signin);
 router.post("/signup", controller.signup);
-router.get("/signout/:id", checkTokenValid, controller.signout);
+router.get("/signout", checkTokenValid, controller.signout);
 
 module.exports = router;

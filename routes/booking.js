@@ -5,6 +5,6 @@ const checkTokenValid = require("../middlewares/checkTokenValid");
 
 router.post("/bookfutsal", controller.bookfutsal);
 router.delete("/cancelbook", controller.cancelbook);
-router.get("/checkbook/:id", checkTokenValid, controller.checkbook);
+router.get("/checkbook", checkTokenValid, controller.checkbook);
 
 module.exports = router;
