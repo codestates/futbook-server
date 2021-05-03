@@ -4,6 +4,6 @@ const controller = require("../controllers/sign");
 
 router.post("/signin", controller.signin);
 router.post("/signup", controller.signup);
-router.post("/signout", controller.signout);
+router.get("/signout", controller.signout);
 
 module.exports = router;
