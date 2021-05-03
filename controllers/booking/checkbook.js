@@ -1,12 +1,10 @@
 const { Booking } = require("../../models");
 
 module.exports = async (req, res) => {
-  const user_id = req.params.id;
+  const user_id = res.userId;
+  try {
+    const result = await Booking.findAll({ where: { user_id } });
 
-  const result = await Booking.findAll({ where: { user_id } });
-  if (result.length === 0) {
-    res.status(400).send({ message: "Invalid user_id params" });
-  } else {
     const bookingDatas = result.map(data => {
       let { id, user_Id, futsal_Id, bookingDate } = data.dataValues;
       return { id, user_Id, futsal_Id, bookingDate };
@@ -16,5 +14,11 @@ module.exports = async (req, res) => {
       data: { bookingDatas },
       message: "succeeded in getting bookingDatas",
     });
+  } catch (err) {
+    res.status(500).send({ message: `${err.message}` });
   }
+
+  // if (result.length === 0) {
+  // } else {
+  // }
 };
