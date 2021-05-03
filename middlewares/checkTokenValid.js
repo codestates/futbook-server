@@ -17,12 +17,13 @@ module.exports = async (req, res, next) => {
         res.status(400).send({ message: `${err.message}` });
       } else {
         const userInfo = await User.findOne({
-          where: { email: encoded.email },
+          where: { id: encoded.id },
         });
 
         if (!userInfo) {
           res.status(401).send({ message: "Invalid token" });
         } else {
+          res.userId = encoded.id;
           next();
         }
       }
